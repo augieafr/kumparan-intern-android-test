@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Work/Doc/Android/PostsApp/app/src/main/res/drawable/ic_dot.xml" value="0.11770833333333333" />
+        <entry key="..\:/Work/Doc/Android/PostsApp/app/src/main/res/font/noto_sans.xml" value="0.12708333333333333" />
         <entry key="..\:/Work/Doc/Android/PostsApp/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Work/Doc/Android/PostsApp/app/src/main/res/layout/post_items.xml" value="0.33" />
       </map>
     </option>
   </component>
