@@ -54,7 +54,7 @@
             tools:text="Bambang-company" />
 
         <TextView
-            android:id="@+id/tv_post_id"
+            android:id="@+id/tv_post_body"
             style="@style/TextAppearance.MdcTypographyStyles.Body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
