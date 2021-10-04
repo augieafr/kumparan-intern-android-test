@@ -7,25 +7,28 @@ import retrofit2.http.Path
 
 interface ApiService {
     @GET("posts")
-    fun getAllPosts() : Call<PostResponse>
+    fun getAllPosts() : Call<List<PostResponseItem>>
+
+    @GET("users")
+    fun getAllUsers() : Call<List<UserResponseItem>>
 
     @GET("users/{userId}")
     fun getUser(
         @Path("userId") userId: Int
-    ) : Call<UserResponse>
+    ) : Call<UserResponseItem>
 
     @GET("posts/{postId}/comments")
     fun getPostComments(
         @Path("postId") postId: Int
-    ) : Call<CommentResponse>
+    ) : Call<List<CommentResponseItem>>
 
     @GET("albums?userId={userId}")
     fun getUserAlbum(
         @Path("userId") userId: Int
-    ) : Call<UserAlbumResponse>
+    ) : Call<List<UserAlbumResponseItem>>
 
     @GET("photos?albumId={albumId}")
     fun getAlbumPhoto(
         @Path("albumId") albumid: Int
-    ) : Call<AlbumPhotoResponse>
+    ) : Call<List<AlbumPhotoResponseItem>>
 }
