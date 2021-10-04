@@ -25,7 +25,7 @@ interface PostDao {
     @Query("SELECT * FROM comment_entity WHERE postId = :postId")
     fun getCommentByPostId(postId: Int): LiveData<List<CommentEntity>>
 
-    @Query("SELECT * FROM photo_entity WHERE albumId = albumId")
+    @Query("SELECT * FROM photo_entity WHERE albumId = :albumId")
     fun getPhotoByAlbumId(albumId: Int): LiveData<List<PhotoEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
