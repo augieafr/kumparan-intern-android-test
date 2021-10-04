@@ -4,12 +4,6 @@ import com.google.gson.annotations.SerializedName
 
 data class PostResponse(
 
-	@field:SerializedName("PostResponse")
-	val postResponse: List<PostResponseItem>
-)
-
-data class PostResponseItem(
-
 	@field:SerializedName("id")
 	val id: Int,
 

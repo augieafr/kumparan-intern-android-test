@@ -4,12 +4,6 @@ import com.google.gson.annotations.SerializedName
 
 data class AlbumPhotoResponse(
 
-	@field:SerializedName("AlbumPhotoResponse")
-	val albumPhotoResponse: List<AlbumPhotoResponseItem>
-)
-
-data class AlbumPhotoResponseItem(
-
 	@field:SerializedName("albumId")
 	val albumId: Int,
 

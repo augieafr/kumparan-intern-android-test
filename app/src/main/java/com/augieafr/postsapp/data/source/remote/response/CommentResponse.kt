@@ -4,12 +4,6 @@ import com.google.gson.annotations.SerializedName
 
 data class CommentResponse(
 
-	@field:SerializedName("CommentResponse")
-	val commentResponse: List<CommentResponseItem>
-)
-
-data class CommentResponseItem(
-
 	@field:SerializedName("name")
 	val name: String,
 
