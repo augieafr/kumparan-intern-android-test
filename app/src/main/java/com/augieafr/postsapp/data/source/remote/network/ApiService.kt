@@ -4,6 +4,7 @@ import com.augieafr.postsapp.data.source.remote.response.*
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ApiService {
     @GET("posts")
@@ -22,9 +23,9 @@ interface ApiService {
         @Path("postId") postId: Int
     ): Call<List<CommentResponse>>
 
-    @GET("albums?userId={userId}")
+    @GET("albums")
     fun getUserAlbum(
-        @Path("userId") userId: Int
+        @Query("userId") userId: Int
     ): Call<List<UserAlbumResponse>>
 
     @GET("photos")
