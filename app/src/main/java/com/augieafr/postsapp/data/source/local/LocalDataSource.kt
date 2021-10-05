@@ -15,7 +15,7 @@ class LocalDataSource(private val postDao: PostDao) {
 
     fun getCommentByPostId(postId: Int) = postDao.getCommentByPostId(postId)
 
-    fun getPhotoByAlbumId(albumId: Int) = postDao.getCommentByPostId(albumId)
+    fun getPhotoByAlbumId(albumId: Int) = postDao.getPhotoByAlbumId(albumId)
 
     fun insertPost(listPost: List<PostEntity>) = postDao.insertPost(listPost)
 
