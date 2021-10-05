@@ -62,6 +62,16 @@ object DataMapper {
         return photoList
     }
 
+    fun mapPhotoResponseToEntities(input: AlbumPhotoResponse): PhotoEntity =
+        PhotoEntity(
+            photoId = input.id,
+            albumId = input.albumId,
+            title = input.title,
+            url = input.url,
+            thumbnailUrl = input.thumbnailUrl
+        )
+
+
     fun mapAlbumResponseToEntities(input: List<UserAlbumResponse>): List<AlbumEntity> {
         val albumList = ArrayList<AlbumEntity>()
         input.map {
@@ -94,18 +104,25 @@ object DataMapper {
         return commentList
     }
 
-    fun mapPostEntityToHomePost(input: List<PostEntity>): List<HomePost> {
+    fun mapPostEntityToHomePost(
+        listPost: List<PostEntity>,
+        mapUser: Map<Int, List<String>>
+    ): List<HomePost> {
         val homePostList = ArrayList<HomePost>()
-        input.map {
-            val homePost = HomePost(
-                postId = it.postId,
-                userId = it.userId,
-                title = it.title,
-                userName = "username",
-                company = "company",
-                body = it.body
-            )
-            homePostList.add(homePost)
+        listPost.map {
+            val user = mapUser.get(it.userId)
+            if (user != null) {
+                val homePost = HomePost(
+                    postId = it.postId,
+                    userId = it.userId,
+                    title = it.title,
+                    // index 0 = username, index 1 = company
+                    userName = user[0],
+                    company = user[1],
+                    body = it.body
+                )
+                homePostList.add(homePost)
+            }
         }
         return homePostList
     }
