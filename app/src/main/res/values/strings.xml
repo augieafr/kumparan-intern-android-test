@@ -3,4 +3,7 @@
     <string name="lorem_ipsum">
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vulputate tellus et vehicula lacinia. Ut leo mauris, aliquet nec mattis nec, ullamcorper ac ante. Nulla imperdiet lacus non rhoncus cursus. Maecenas a iaculis leo. Mauris purus sapien, ultrices a gravida quis, commodo sit amet justo. Cras volutpat ullamcorper venenatis. Donec id velit pretium, tempor leo sit amet, egestas dolor. Sed tempor cursus laoreet. Pellentesque interdum a mauris eget viverra. Curabitur at porta ligula. Sed tempor faucibus diam sed ultrices. Morbi eget mauris nec nunc porttitor ultrices ac efficitur magna.</string>
+    <string name="comment">Comment</string>
+    <string name="no_comment">No comment yet.</string>
+    <string name="dot">dot</string>
 </resources>
