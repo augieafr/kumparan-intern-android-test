@@ -1,18 +1,16 @@
-package com.augieafr.postsapp.ui
+package com.augieafr.postsapp.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.augieafr.postsapp.data.source.local.entity.PostEntity
 import com.augieafr.postsapp.databinding.PostItemsBinding
-import com.augieafr.postsapp.ui.home.HomePost
 
 class PostsAdapter : RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
 
-    var onItemClick: ((PostEntity) -> Unit)? = null
-    private var listPost = ArrayList<PostEntity>()
+    var onItemClick: ((HomePost) -> Unit)? = null
+    private var listPost = ArrayList<HomePost>()
 
-    fun setData(data: List<PostEntity>?) {
+    fun setData(data: List<HomePost>?) {
         if (data == null) return
         listPost.clear()
         listPost.addAll(data)
@@ -33,12 +31,12 @@ class PostsAdapter : RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
 
     inner class PostViewHolder(private val binding: PostItemsBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(posts: PostEntity) {
+        fun bind(posts: HomePost) {
             with(binding) {
                 tvPostBody.text = posts.body
                 tvPostTitle.text = posts.title
-                tvPostUserName.text = "username"
-                tvPostUserCompany.text = "company"
+                tvPostUserName.text = posts.userName
+                tvPostUserCompany.text = posts.company
 
                 itemView.setOnClickListener {
                     onItemClick?.invoke(posts)
