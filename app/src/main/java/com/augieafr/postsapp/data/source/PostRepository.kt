@@ -105,7 +105,7 @@ class PostRepository(
         }.asLiveData()
 
     override fun getPhotoById(id: Int): LiveData<Resource<PhotoEntity>> =
-        object : NetworkBoundResource<PhotoEntity, AlbumPhotoResponse>(appExecutors) {
+        object: NetworkBoundResource<PhotoEntity, AlbumPhotoResponse>(appExecutors){
             override fun loadFromDB(): LiveData<PhotoEntity> =
                 local.getPhotoById(id)
 
@@ -122,7 +122,7 @@ class PostRepository(
         }.asLiveData()
 
     override fun getComment(postId: Int): LiveData<Resource<List<CommentEntity>>> =
-        object : NetworkBoundResource<List<CommentEntity>, List<CommentResponse>>(appExecutors) {
+        object : NetworkBoundResource<List<CommentEntity>, List<CommentResponse>>(appExecutors){
             override fun loadFromDB(): LiveData<List<CommentEntity>> =
                 local.getCommentByPostId(postId)
 

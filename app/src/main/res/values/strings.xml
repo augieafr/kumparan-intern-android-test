@@ -6,4 +6,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vulputate tellus
     <string name="comment">Comment</string>
     <string name="no_comment">No comment yet.</string>
     <string name="dot">dot</string>
+    <string name="user_album">%1$s\'s Album</string>
+    <string name="thumbnail">thumbnail</string>
 </resources>
