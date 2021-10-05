@@ -1,7 +1,9 @@
 package com.augieafr.postsapp.utils
 
+import android.util.Log
 import com.augieafr.postsapp.data.source.local.entity.*
 import com.augieafr.postsapp.data.source.remote.response.*
+import com.augieafr.postsapp.ui.detailuser.Album
 import com.augieafr.postsapp.ui.home.HomePost
 
 /*
@@ -77,7 +79,7 @@ object DataMapper {
         input.map {
             val album = AlbumEntity(
                 albumId = it.id,
-                userId = it.id,
+                userId = it.userId,
                 title = it.title
             )
             albumList.add(album)
@@ -131,5 +133,24 @@ object DataMapper {
         var name = input.replaceAfter("@", " ")
         name = name.replace(Regex("""[._@,-]"""), " ")
         return name
+    }
+
+    fun mapAlbumEntityToAlbum(
+        listAlbumEntity: List<AlbumEntity>,
+        mapPhoto: Map<Int, List<PhotoEntity>>
+    ): List<Album> {
+        val listAlbum = ArrayList<Album>()
+        listAlbumEntity.map {
+            val photoFromMap = mapPhoto[it.albumId]
+
+            if (photoFromMap != null) {
+                val album = Album(
+                    name = it.title,
+                    photo = photoFromMap
+                )
+                listAlbum.add(album)
+            }
+        }
+        return listAlbum
     }
 }
