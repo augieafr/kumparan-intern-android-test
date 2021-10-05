@@ -11,6 +11,9 @@
         android:theme="@style/Theme.PostsApp">
 
         <activity
+            android:name=".ui.detailuser.DetailUserActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.detailpost.DetailPostActivity"
             android:exported="true" />
         <activity
