@@ -2,6 +2,7 @@ package com.augieafr.postsapp.utils
 
 import com.augieafr.postsapp.data.source.local.entity.*
 import com.augieafr.postsapp.data.source.remote.response.*
+import com.augieafr.postsapp.ui.home.HomePost
 
 /*
     object class that serve as data model mapper.
@@ -93,9 +94,25 @@ object DataMapper {
         return commentList
     }
 
-    private fun getNameFromEmail(input: String): String{
-        var name = input.replaceAfter("@"," ")
-        name = name.replace(Regex("""[._@,-]""")," ")
+    fun mapPostEntityToHomePost(input: List<PostEntity>): List<HomePost> {
+        val homePostList = ArrayList<HomePost>()
+        input.map {
+            val homePost = HomePost(
+                postId = it.postId,
+                userId = it.userId,
+                title = it.title,
+                userName = "username",
+                company = "company",
+                body = it.body
+            )
+            homePostList.add(homePost)
+        }
+        return homePostList
+    }
+
+    private fun getNameFromEmail(input: String): String {
+        var name = input.replaceAfter("@", " ")
+        name = name.replace(Regex("""[._@,-]"""), " ")
         return name
     }
 }
