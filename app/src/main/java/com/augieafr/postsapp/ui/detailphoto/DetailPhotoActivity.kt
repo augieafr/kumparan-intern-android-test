@@ -13,6 +13,8 @@ class DetailPhotoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_photo)
 
+        supportActionBar?.hide()
+
         val name = intent.getStringExtra(EXTRA_NAME)
         findViewById<TextView>(R.id.tv_title).text = name
 
