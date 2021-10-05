@@ -135,9 +135,9 @@ class RemoteDataSource(private val api: ApiService) {
         return userAlbumList
     }
 
-    fun getAlbumPhoto(albumId: Int): LiveData<ApiResponse<List<AlbumPhotoResponse>>> {
+    fun getAllAlbumPhoto(): LiveData<ApiResponse<List<AlbumPhotoResponse>>> {
         val albumPhotoList = MutableLiveData<ApiResponse<List<AlbumPhotoResponse>>>()
-        api.getAlbumPhoto(albumId).enqueue(object : Callback<List<AlbumPhotoResponse>> {
+        api.getAllAlbumPhoto().enqueue(object : Callback<List<AlbumPhotoResponse>> {
             override fun onResponse(
                 call: Call<List<AlbumPhotoResponse>>,
                 response: Response<List<AlbumPhotoResponse>>
@@ -152,6 +152,30 @@ class RemoteDataSource(private val api: ApiService) {
             }
 
             override fun onFailure(call: Call<List<AlbumPhotoResponse>>, t: Throwable) {
+                albumPhotoList.value = ApiResponse.Error("Network connection error")
+                Log.d(TAG, "onFailure: ${t.message}")
+            }
+        })
+        return albumPhotoList
+    }
+
+    fun getAlbumPhotoById(id: Int): LiveData<ApiResponse<AlbumPhotoResponse>> {
+        val albumPhotoList = MutableLiveData<ApiResponse<AlbumPhotoResponse>>()
+        api.getAlbumPhotosById(id).enqueue(object : Callback<AlbumPhotoResponse> {
+            override fun onResponse(
+                call: Call<AlbumPhotoResponse>,
+                response: Response<AlbumPhotoResponse>
+            ) {
+                response.body().let {
+                    if (it == null) {
+                        albumPhotoList.value = ApiResponse.Empty
+                    } else {
+                        albumPhotoList.value = ApiResponse.Success(it)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<AlbumPhotoResponse>, t: Throwable) {
                 albumPhotoList.value = ApiResponse.Error("Network connection error")
                 Log.d(TAG, "onFailure: ${t.message}")
             }

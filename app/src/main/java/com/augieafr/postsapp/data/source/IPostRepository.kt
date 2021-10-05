@@ -8,6 +8,7 @@ interface IPostRepository {
     fun getAllUser(): LiveData<Resource<List<UserEntity>>>
     fun getUser(id: Int): LiveData<Resource<UserEntity>>
     fun getAlbum(userId: Int): LiveData<Resource<List<AlbumEntity>>>
-    fun getPhoto(albumId: Int): LiveData<Resource<List<PhotoEntity>>>
+    fun getAllPhoto(): LiveData<Resource<List<PhotoEntity>>>
+    fun getPhotoById(id: Int): LiveData<Resource<PhotoEntity>>
     fun getComment(postId: Int): LiveData<Resource<List<CommentEntity>>>
 }

@@ -25,8 +25,11 @@ interface PostDao {
     @Query("SELECT * FROM comment_entity WHERE postId = :postId")
     fun getCommentByPostId(postId: Int): LiveData<List<CommentEntity>>
 
-    @Query("SELECT * FROM photo_entity WHERE albumId = :albumId")
-    fun getPhotoByAlbumId(albumId: Int): LiveData<List<PhotoEntity>>
+    @Query("SELECT * FROM photo_entity")
+    fun getAllPhoto(): LiveData<List<PhotoEntity>>
+
+    @Query("SELECT * FROM photo_entity WHERE photoId = :photoId")
+    fun getPhotoById(photoId: Int): LiveData<PhotoEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertPost(listPost: List<PostEntity>)
@@ -45,4 +48,7 @@ interface PostDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertPhoto(listPhoto: List<PhotoEntity>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertPhoto(photo: PhotoEntity)
 }

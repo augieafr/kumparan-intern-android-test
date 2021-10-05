@@ -87,16 +87,16 @@ class PostRepository(
             }
         }.asLiveData()
 
-    override fun getPhoto(albumId: Int): LiveData<Resource<List<PhotoEntity>>> =
+    override fun getAllPhoto(): LiveData<Resource<List<PhotoEntity>>> =
         object : NetworkBoundResource<List<PhotoEntity>, List<AlbumPhotoResponse>>(appExecutors) {
             override fun loadFromDB(): LiveData<List<PhotoEntity>> =
-                local.getPhotoByAlbumId(albumId)
+                local.getAllPhoto()
 
             override fun shouldFetch(data: List<PhotoEntity>?): Boolean =
                 data.isNullOrEmpty()
 
             override fun createCall(): LiveData<ApiResponse<List<AlbumPhotoResponse>>> =
-                remote.getAlbumPhoto(albumId)
+                remote.getAllAlbumPhoto()
 
             override fun saveCallResult(data: List<AlbumPhotoResponse>) {
                 val listPhoto = DataMapper.mapPhotoResponseToEntities(data)
@@ -104,8 +104,25 @@ class PostRepository(
             }
         }.asLiveData()
 
+    override fun getPhotoById(id: Int): LiveData<Resource<PhotoEntity>> =
+        object : NetworkBoundResource<PhotoEntity, AlbumPhotoResponse>(appExecutors) {
+            override fun loadFromDB(): LiveData<PhotoEntity> =
+                local.getPhotoById(id)
+
+            override fun shouldFetch(data: PhotoEntity?): Boolean =
+                data == null
+
+            override fun createCall(): LiveData<ApiResponse<AlbumPhotoResponse>> =
+                remote.getAlbumPhotoById(id)
+
+            override fun saveCallResult(data: AlbumPhotoResponse) {
+                val photo = DataMapper.mapPhotoResponseToEntities(data)
+                local.insertPhoto(photo)
+            }
+        }.asLiveData()
+
     override fun getComment(postId: Int): LiveData<Resource<List<CommentEntity>>> =
-        object : NetworkBoundResource<List<CommentEntity>, List<CommentResponse>>(appExecutors){
+        object : NetworkBoundResource<List<CommentEntity>, List<CommentResponse>>(appExecutors) {
             override fun loadFromDB(): LiveData<List<CommentEntity>> =
                 local.getCommentByPostId(postId)
 

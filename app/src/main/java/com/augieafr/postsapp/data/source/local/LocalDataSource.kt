@@ -15,7 +15,10 @@ class LocalDataSource(private val postDao: PostDao) {
 
     fun getCommentByPostId(postId: Int) = postDao.getCommentByPostId(postId)
 
-    fun getPhotoByAlbumId(albumId: Int) = postDao.getPhotoByAlbumId(albumId)
+    fun getAllPhoto() = postDao.getAllPhoto()
+
+    fun getPhotoById(id: Int) = postDao.getPhotoById(id)
+
 
     fun insertPost(listPost: List<PostEntity>) = postDao.insertPost(listPost)
 
@@ -28,6 +31,8 @@ class LocalDataSource(private val postDao: PostDao) {
     fun insertComment(listComment: List<CommentEntity>) = postDao.insertComment(listComment)
 
     fun insertPhoto(listPhoto: List<PhotoEntity>) = postDao.insertPhoto(listPhoto)
+
+    fun insertPhoto(photo: PhotoEntity) = postDao.insertPhoto(photo)
 
     companion object {
         private var instance: LocalDataSource? = null
