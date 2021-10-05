@@ -21,7 +21,9 @@ class ViewModelFactory private constructor(private val postRepository: PostRepos
             modelClass.isAssignableFrom(DetailPostViewModel::class.java) -> {
                 return DetailPostViewModel(postRepository) as T
             }
-
+            modelClass.isAssignableFrom(DetailUserViewModel::class.java) -> {
+                return DetailUserViewModel(postRepository) as T
+            }
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }
     }
