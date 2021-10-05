@@ -57,7 +57,9 @@ class DetailPostActivity : AppCompatActivity() {
                     is Resource.Success -> {
                         viewModel.isLoading.postValue(false)
                         if (status.data.isNullOrEmpty()) {
+                            isNoComment(true)
                         } else {
+                            isNoComment(false)
                             adapter.setData(status.data)
                             with(binding.rvComment) {
                                 layoutManager = LinearLayoutManager(context)
@@ -85,6 +87,15 @@ class DetailPostActivity : AppCompatActivity() {
         }
     }
 
+    private fun isNoComment(noComment: Boolean){
+        if (noComment){
+            binding.tvNoComment.visibility = View.VISIBLE
+            binding.rvComment.visibility = View.GONE
+        } else {
+            binding.tvNoComment.visibility = View.GONE
+            binding.rvComment.visibility = View.VISIBLE
+        }
+    }
     companion object {
         const val EXTRA_POST = "extra_post"
     }
