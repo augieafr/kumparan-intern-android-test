@@ -85,7 +85,7 @@ object DataMapper {
         input.map {
             val comment = CommentEntity(
                 commentId = it.id,
-                postId = it.id,
+                postId = it.postId,
                 name = getNameFromEmail(it.email),
                 body = it.body
             )
